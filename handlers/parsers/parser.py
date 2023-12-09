@@ -4,7 +4,7 @@ from fake_useragent import UserAgent
 
 
 class Parser:
-    def __init__(self, link: str) -> None:
+    def __init__(self, link: str):
         self.link = link
         self.page = None
 

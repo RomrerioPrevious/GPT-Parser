@@ -7,7 +7,7 @@ import websockets
 
 
 class KickstarterParser(Parser):
-    def __init__(self, link: str) -> None:
+    def __init__(self, link: str):
         super().__init__(link)
         self.session = requests.Session()
 

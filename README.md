@@ -6,7 +6,7 @@ GPT-Parser is a parser with GPT-4 for analys projects on sites: [Kickstarter](ht
 
 - [Romrerio](https://github.com/RomrerioPrevious)
 
-## Librares
+## Libraries
 
 - [Poetry](https://github.com/python-poetry/poetry)
 - [Icecream](https://github.com/gruns/icecream)
@@ -17,4 +17,4 @@ GPT-Parser is a parser with GPT-4 for analys projects on sites: [Kickstarter](ht
 
 ## How to install
 
-## Programm structure
+## Project structure

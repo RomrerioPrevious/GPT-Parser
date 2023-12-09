@@ -1,7 +1,7 @@
 [tool.poetry]
 name = "gpt parser"
 version = "0.1.0"
-description = ""
+description = "GPT-Parser is a parser with GPT-4 for analys projects on sites: Kickstarter and Indiegogo"
 authors = ["RomrerioPrevious <ggJohn12345@yandex.ru>"]
 readme = "README.md"
 
