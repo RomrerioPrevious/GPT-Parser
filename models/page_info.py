@@ -3,6 +3,7 @@ from dataclasses import dataclass
 
 @dataclass
 class PageInfo:
+    name: str
     site: str
     in_amazon: str
     patent: bool
