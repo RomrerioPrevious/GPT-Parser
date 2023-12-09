@@ -13,7 +13,8 @@ GPT-Parser is a parser with GPT-4 for analys projects on sites: [Kickstarter](ht
 - [GRequests](https://github.com/spyoungtech/grequests)
 - [BeautifulSoup](https://github.com/expobrain/BeautifulSoup)
 - [OpenAI](https://github.com/openai/openai-python)
+- JSON
 
 ## How to install
 
-## Programm
+## Programm structure
