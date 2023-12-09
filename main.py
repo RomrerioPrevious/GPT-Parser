@@ -1,17 +1,18 @@
-from icecream import ic
+from icecream import ic, install
 from view import *
 from handlers import *
 
 
 def main():
+    install()
+    ic.configureOutput(prefix="info | ")
+
     with open("resources\\assets\\Logo.txt", "r") as file:
         print(file.read())
-
-    parser = KikstarterParser(
-        "https://www.kickstarter.com/projects/255929858/flying-tent-7-seconds-to-the-stars?ref=discovery_popular&term=tent")
-
+#    parser = KickstarterParser(
+#        "https://www.kickstarter.com/projects/255929858/flying-tent-7-seconds-to-the-stars?ref=discovery_popular&term=tent")
+    parser = IndegogoParser("https://www.indiegogo.com/projects/the-crua-crucoon--2/pies")
     page = parser.get_page()
-
     with open("page.html", "w") as file:
         file.write(page)
 

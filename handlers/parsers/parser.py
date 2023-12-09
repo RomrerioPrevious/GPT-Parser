@@ -1,7 +1,6 @@
 from models import PageInfo
 import requests
 from fake_useragent import UserAgent
-from icecream import ic
 
 
 class Parser:
@@ -11,9 +10,8 @@ class Parser:
 
     def get_page(self) -> str:
         headers = {"User-Agent": UserAgent().getRandom["useragent"]}
-        responce = requests.get(self.link, headers=headers)
-        self.page = responce.text
-        return self.page
+        self.page = requests.get(self.link, headers=headers)
+        return self.page.text
 
     def parse_page(self) -> PageInfo:
         ...

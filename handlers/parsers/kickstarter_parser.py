@@ -1,21 +1,24 @@
-from icecream import ic
-from requests_html import HTMLSession
+import requests
 from bs4 import BeautifulSoup
 from handlers.parsers.parser import Parser
 from models import PageInfo
 from fake_useragent import UserAgent
+import websockets
 
 
-class KikstarterParser(Parser):
+class KickstarterParser(Parser):
     def __init__(self, link: str) -> None:
-        self.link = link
-        self.page = None
+        super().__init__(link)
+        self.session = requests.Session()
 
     def get_page(self) -> str:
         headers = {"User-Agent": UserAgent().getRandom["useragent"]}
-        responce = HTMLSession().get(self.link, headers=headers)
-        self.page = responce.text
-        return self.page
+        responce = self.session.get(self.link, headers=headers)
+        self.page = responce
+        return self.page.text
 
     def parse_page(self) -> PageInfo:
+        self.parse_websocket()
+
+    def parse_websocket(self):
         ...

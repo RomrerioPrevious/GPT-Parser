@@ -1,1 +1,1 @@
-from .parsers import KikstarterParser, IndegogoParser, Parser
+from .parsers import KickstarterParser, IndegogoParser, Parser
