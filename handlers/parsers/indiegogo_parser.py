@@ -12,8 +12,8 @@ class IndiegogoParser(Parser):
 
     def get_page(self) -> str:
         headers = {"User-Agent": UserAgent().getRandom["useragent"]}
-        self.page = requests.get(self.link, headers=headers)
-        return self.page.text
+        self.page = requests.get(self.link, headers=headers).text
+        return self.page
 
     def parse_page(self) -> PageInfo:
         ...

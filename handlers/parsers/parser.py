@@ -5,8 +5,8 @@ from fake_useragent import UserAgent
 
 class Parser:
     def __init__(self, link: str):
-        self.link = link
-        self.page = None
+        self.link: str = link
+        self.page: str = ""
 
     def get_page(self) -> str:
         headers = {"User-Agent": UserAgent().getRandom["useragent"]}

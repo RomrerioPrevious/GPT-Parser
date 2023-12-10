@@ -14,11 +14,11 @@ class KickstarterParser(Parser):
     def get_page(self) -> str:
         headers = {"User-Agent": UserAgent().getRandom["useragent"]}
         responce = self.session.get(self.link, headers=headers)
-        self.page = responce
-        return self.page.text
+        self.page = responce.text
+        return self.page
 
     def parse_page(self) -> PageInfo:
-        self.parse_websocket()
+        ...
 
     def parse_websocket(self):
         ...

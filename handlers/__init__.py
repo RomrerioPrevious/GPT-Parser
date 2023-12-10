@@ -1,1 +1,2 @@
-from .parsers import KickstarterParser, IndiegogoParser, Parser
+from .parsers import *
+from .processes import *
