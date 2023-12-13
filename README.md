@@ -17,4 +17,14 @@ GPT-Parser is a parser with GPT-4 for analys projects on sites: [Kickstarter](ht
 
 ## How to install
 
+```
+pip install poetry
+```
+
+### How to run project
+
+```
+poetry run main.py
+```
+
 ## Project structure

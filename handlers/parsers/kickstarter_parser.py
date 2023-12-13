@@ -1,21 +1,16 @@
-import requests
 from bs4 import BeautifulSoup
 from handlers.parsers.parser import Parser
 from models import PageInfo
 from fake_useragent import UserAgent
-import websockets
+from selenium import webdriver
 
 
 class KickstarterParser(Parser):
     def __init__(self, link: str):
         super().__init__(link)
-        self.session = requests.Session()
 
     def get_page(self) -> str:
-        headers = {"User-Agent": UserAgent().getRandom["useragent"]}
-        responce = self.session.get(self.link, headers=headers)
-        self.page = responce.text
-        return self.page
+        ...
 
     def parse_page(self) -> PageInfo:
         ...

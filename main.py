@@ -13,10 +13,10 @@ def main():
     view = View()
     view.print_description()
 
-    controller = ControllerOfProcess(["https://www.indiegogo.com/projects/the-crua-crucoon--2/pies",
-                                      "https://www.kickstarter.com/projects/255929858/flying-tent-7-seconds-to-the-stars?ref=discovery_popular&term=tent"])
-
-    controller.run()
+    i = IndiegogoParser("https://www.indiegogo.com/projects/one-tent-system-every-possibility-crua-clan/pies")
+    page = i.get_page()
+    with open("page.html", "w", encoding="UTF-8") as file:
+        file.write(page)
 
 
 if __name__ == "__main__":
