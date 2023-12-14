@@ -60,7 +60,7 @@ class IndiegogoParser(Parser):
         return result
 
     def collecting_to_int(self, collecting: str) -> int:
-        result = collecting.replace("\n", "").replace(" ", "").replace("$", "").replace("\xa0", "")
+        result = collecting.replace("\n", "").replace(" ", "").replace("$", "").replace("\xa0", "").replace("€", "")
         return int(result)
 
     def __del__(self):

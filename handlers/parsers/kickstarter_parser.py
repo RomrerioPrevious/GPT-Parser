@@ -38,18 +38,47 @@ class KickstarterParser(Parser):
         return self.page
 
     def parse_page(self) -> PageInfo:
-        page_info = PageInfo()
         soup = BeautifulSoup(self.page, "lxml")
-        page_info.name = soup.find("a", class_="hero__link").text
+        if soup.find("h2", string="Upcoming Project"):
+            page_info = self.parse_upcoming_project(soup)
+        else:
+            page_info = self.parse_project(soup)
+        return page_info
+
+    def parse_upcoming_project(self, soup) -> PageInfo:
+        page_info = PageInfo()
+        page_info.name = self.get_name(soup)
+        page_info.link = self.link
+        page_info.link_of_image = soup.find("img", class_="w100p block")["src"]
+        page_info.risks = [""]
+        page_info.reviews = [""]
+        page_info.collecting = 0
+        return page_info
+
+    def parse_project(self, soup) -> PageInfo:
+        page_info = PageInfo()
+        page_info.name = self.get_name(soup)
         page_info.link = self.link
         page_info.link_of_image = soup.find("img", class_="js-feature-image")["src"]
         page_info.risks = [soup.find("div", class_="mb3 mb10-sm mb3 js-risks", id="risks-and-challenges")
-                               .find("p", class_="js-risks-text text-preline")]
+                           .find("p", class_="js-risks-text text-preline")]
         page_info.collecting = self.collecting_to_int(soup.find("span", class_="money").text)
+        page_info.reviews = [""]
         return page_info
 
+    def get_name(self, soup):
+        if soup.find("a", class_="hero__link"):
+            name = soup.find("a", class_="hero__link").text
+        elif soup.find("h2", class_="type-28 type-24-md soft-black mb1 project-name"):
+            name = soup.find("h2", class_="type-28 type-24-md soft-black mb1 project-name").text
+        elif soup.find("h1", class_="type-21 type-24-md type-28-lg kds-heading mb4 bold"):
+            name = soup.find("h1", class_="type-21 type-24-md type-28-lg kds-heading mb4 bold").text
+        else:
+            name = ""
+        return name
+
     def collecting_to_int(self, collecting: str) -> int:
-        result = collecting.replace("€", "").replace(",", "")
+        result = collecting.replace("€", "").replace(",", "").replace("$", "")
         return int(result)
 
     def __del__(self):

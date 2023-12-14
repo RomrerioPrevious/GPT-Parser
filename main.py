@@ -1,5 +1,4 @@
 import time
-
 from icecream import ic, install
 from view import *
 from handlers import *
@@ -13,11 +12,20 @@ def main():
     with open("resources\\assets\\Logo.txt", "r") as file:
         print(file.read())
     view = View()
-    view.print_description()
+    #    view.print_description()
 
-    i = KickstarterParser("https://www.kickstarter.com/projects/255929858/flying-tent-7-seconds-to-the-stars?ref=discovery_popular&term=tent")
-    i.get_page()
-    i.parse_page()
+    link = input("get link: ")
+    i = ProcessOfParsers.find_class_of_link(link)
+    page = i.get_page()
+    with open("page.html", "w", encoding="UTF-8") as file:
+        file.write(page)
+    info = i.parse_page()
+    ic([info.name,
+        info.link,
+        info.risks,
+        info.collecting,
+        info.link_of_image,
+        info.reviews])
 
 
 if __name__ == "__main__":
