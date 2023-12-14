@@ -11,7 +11,7 @@ class Parser:
 
     def create_options(self) -> webdriver.ChromeOptions:
         options = webdriver.ChromeOptions()
-        options.page_load_strategy = "eager"
+        options.page_load_strategy = "none"
         options.add_experimental_option("detach", True)
         options.add_argument("headless")
         options.add_argument(f"user-agent={UserAgent().random}")
@@ -23,3 +23,7 @@ class Parser:
 
     def parse_page(self) -> PageInfo:
         ...
+
+    def __del__(self):
+        self.driver.quit()
+        ic("driver will be closed")

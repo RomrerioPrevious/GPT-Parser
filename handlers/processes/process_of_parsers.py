@@ -8,11 +8,13 @@ class ProcessOfParsers:
 
     @staticmethod
     def find_class_of_link(link: str) -> Parser:
-        parsers = {"Indiegogo": IndiegogoParser(link),
-                   "Kickstarter": KickstarterParser(link)}
+        parsers = {"Indiegogo": IndiegogoParser,
+                   "Kickstarter": KickstarterParser}
         site = link.replace("https://www.", "").split(".")[0].capitalize()
-        return parsers[site]
+        return parsers[site](link)
 
-    def process(self):
-        page = self.parser.get_page()
-        info = self.parser.parse_page()
+
+def process_of_parser(link: str):
+    parser = ProcessOfParsers.find_class_of_link(link)
+    parser.get_page()
+    parser.parse_page()
