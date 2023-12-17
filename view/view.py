@@ -1,18 +1,14 @@
+import time
+
 from rich.console import Console
-from rich.progress import track
+from rich.progress import Progress, track
 from rich.layout import Layout
 from rich.panel import Panel
 
 
 class View:
     def __init__(self):
-        self.bars = {}
         self.console = Console()
-
-    def add_progress_bar(self, name: str, length: int):
-        self.bars[name] = track(range(length), description=name)
-        for _ in self.bars[name]:
-            ...
 
     def print_description(self):
         layout = Layout()

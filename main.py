@@ -8,24 +8,13 @@ from models import *
 def main():
     install()
     ic.configureOutput(prefix="info | ")
-
     with open("resources\\assets\\Logo.txt", "r") as file:
         print(file.read())
     view = View()
-    #    view.print_description()
-
-    link = input("get link: ")
-    i = ProcessOfParsers.find_class_of_link(link)
-    page = i.get_page()
-    with open("page.html", "w", encoding="UTF-8") as file:
-        file.write(page)
-    info = i.parse_page()
-    ic([info.name,
-        info.link,
-        info.risks,
-        info.collecting,
-        info.link_of_image,
-        info.reviews])
+    view.print_description()
+    links = ["https://www.indiegogo.com/projects/the-crua-crucoon--2/pies"]
+    controller = ControllerOfProcess(links)
+    controller.run()
 
 
 if __name__ == "__main__":

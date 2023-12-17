@@ -19,13 +19,13 @@ class IndiegogoParser(Parser):
         while True:
             try:
                 self.driver.find_element(by=By.XPATH,
-                                         value="/html/body/div[2]/div/div/div[2]/div[1]/div/div[3]/div/div[1]/div/div/div[2]/div/div[2]/button").click()
+                                         value="/html/body/div[2]/div/div/div[2]/div[1]/div/div[3]/div/div["
+                                               "1]/div/div/div[2]/div/div[2]/button").click()
                 break
             except NoSuchElementException:
                 time.sleep(1)
-
         html = self.driver.find_element(by=By.TAG_NAME, value="html")
-        for i in range(200):
+        for i in range(500):
             html.send_keys(Keys.DOWN)
         self.page = self.driver.page_source
         ic("page is loaded")
@@ -37,10 +37,18 @@ class IndiegogoParser(Parser):
         page_info.name = soup.find("p", class_="closedCampaignCarousel-title t-h3--sansSerif").text
         page_info.link = self.link
         risks = []
-        risk_block = soup.find("h3", string="Risks and challenges")
-        while risk_block.next.find("strong"):
-            risk_block = risk_block.next
-            risks.append(risk_block.text)
+        try:
+            risk_block = soup.find("h3", string="Risks and challenges")
+            if not risk_block:
+                risk_block = soup.find("h3", string="Risks & Challenges")
+            while risk_block.next.find("strong"):
+                risk_block = risk_block.next
+                risks.append(risk_block.text)
+                if not risk_block.next:
+                    break
+        except BaseException:
+            ...
+        page_info.risks = risks
         page_info.collecting = self.collecting_to_int(
             soup.find("span", class_="basicsGoalProgress-amountSold t-h5--sansSerif t-weight--bold").text)
         page_info.reviews = self.get_reviews()

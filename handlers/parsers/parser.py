@@ -26,4 +26,3 @@ class Parser:
 
     def __del__(self):
         self.driver.quit()
-        ic("driver will be closed")
