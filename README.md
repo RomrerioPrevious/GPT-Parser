@@ -12,7 +12,7 @@ user [techdecker](https://kwork.ru/user/techdecker).
 
 - [Poetry](https://github.com/python-poetry/poetry)
 - [Icecream](https://github.com/gruns/icecream)
-- [GRequests](https://github.com/spyoungtech/grequests)
+- [Selenium](https://github.com/SeleniumHQ/selenium)
 - [BeautifulSoup](https://github.com/expobrain/BeautifulSoup)
 - [OpenAI](https://github.com/openai/openai-python)
 - JSON
@@ -34,10 +34,8 @@ Third: turn it on safaridriver.
 safaridriver --enable
 ```
 
-### How to run project
+## How to run project
 
 ```
 poetry run main.py
 ```
-
-## Project structure

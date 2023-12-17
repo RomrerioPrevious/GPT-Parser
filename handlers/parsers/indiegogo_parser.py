@@ -1,5 +1,8 @@
 import time
 
+from openai import APIConnectionError
+
+from handlers.gpt import GPT_Analysator
 from bs4 import BeautifulSoup
 from selenium.common import NoSuchElementException
 from selenium.webdriver.common.keys import Keys
@@ -52,7 +55,22 @@ class IndiegogoParser(Parser):
         page_info.collecting = self.collecting_to_int(
             soup.find("span", class_="basicsGoalProgress-amountSold t-h5--sansSerif t-weight--bold").text)
         page_info.reviews = self.get_reviews()
+        self.get_gpt_analysis(page_info)
         return page_info
+
+    def get_gpt_analysis(self, page_info: PageInfo):
+        try:
+            gpt = GPT_Analysator()
+            responce = gpt.get_page_info_by_project_name(page_info.name)
+            page_info.site = responce["site"]
+            page_info.in_amazon = responce["in_amazon"]
+            page_info.usp = responce["usp"]
+            page_info.uniqueness_technology = responce["uniqueness_technology"]
+            page_info.uniqueness_in_world = responce["uniqueness_in_world"]
+            page_info.patent = responce["patent"]
+            page_info.can_buy = responce["can_buy"]
+        except APIConnectionError:
+            ...
 
     def get_reviews(self):
         result = []

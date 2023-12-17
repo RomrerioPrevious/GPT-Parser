@@ -1,11 +1,14 @@
 import time
 
 from bs4 import BeautifulSoup
+from openai import APIConnectionError
 from selenium.common import NoSuchElementException
 from selenium.webdriver import ActionChains
 from selenium import webdriver
 from selenium.webdriver.common.keys import Keys
 from selenium.webdriver.common.by import By
+
+from handlers import GPT_Analysator
 from handlers.parsers.parser import Parser
 from models import PageInfo
 from icecream import ic
@@ -53,6 +56,7 @@ class KickstarterParser(Parser):
         page_info.risks = [""]
         page_info.reviews = [""]
         page_info.collecting = 0
+        self.get_gpt_analysis(page_info)
         return page_info
 
     def parse_project(self, soup) -> PageInfo:
@@ -64,7 +68,22 @@ class KickstarterParser(Parser):
                            .find("p", class_="js-risks-text text-preline")]
         page_info.collecting = self.collecting_to_int(soup.find("span", class_="money").text)
         page_info.reviews = [""]
+        self.get_gpt_analysis(page_info)
         return page_info
+
+    def get_gpt_analysis(self, page_info: PageInfo):
+        try:
+            gpt = GPT_Analysator()
+            responce = gpt.get_page_info_by_project_name(page_info.name)
+            page_info.site = responce["site"]
+            page_info.in_amazon = responce["in_amazon"]
+            page_info.usp = responce["usp"]
+            page_info.uniqueness_technology = responce["uniqueness_technology"]
+            page_info.uniqueness_in_world = responce["uniqueness_in_world"]
+            page_info.patent = responce["patent"]
+            page_info.can_buy = responce["can_buy"]
+        except APIConnectionError:
+            ...
 
     def get_name(self, soup):
         if soup.find("a", class_="hero__link"):

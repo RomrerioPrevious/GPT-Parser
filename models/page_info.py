@@ -13,8 +13,8 @@ class PageInfo:
     uniqueness_in_world: str  # GPT
     reviews: [str]  # Indiegogo
     risks: [str]  # All
-    patent: bool  # GPT
-    can_buy: bool  # GPT
+    patent: str  # GPT
+    can_buy: str  # GPT
     collecting: int  # All
 
     def __init__(self):
