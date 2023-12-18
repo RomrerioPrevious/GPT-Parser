@@ -39,3 +39,17 @@ safaridriver --enable
 ```
 poetry run main.py
 ```
+
+## Questions and clarifications
+
+What are the launch requirements?
+
+- Mac OS
+- Stabile internet
+- VPN
+
+How to edit parameters?
+
+```
+edit PATAMETER_NAME DATA
+```
