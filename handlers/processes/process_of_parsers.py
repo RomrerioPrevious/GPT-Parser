@@ -1,5 +1,6 @@
 from handlers.parsers import IndiegogoParser, KickstarterParser, Parser
 from models import PageInfo
+from handlers.exel import Exel
 
 
 class ProcessOfParsers:
@@ -17,4 +18,6 @@ class ProcessOfParsers:
 def process_of_parser(link: str):
     parser = ProcessOfParsers.find_class_of_link(link)
     parser.get_page()
-    parser.parse_page()
+    info = parser.parse_page()
+    exel = Exel()
+    exel.add_page(info)

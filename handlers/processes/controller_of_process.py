@@ -1,8 +1,6 @@
 from multiprocessing import Process
-from handlers.processes import ProcessOfParsers, process_of_parser
+from handlers.processes import process_of_parser
 import time
-from rich.progress import Progress
-from view import View
 
 
 class ControllerOfProcess:

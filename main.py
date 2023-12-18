@@ -2,7 +2,6 @@ import time
 from icecream import ic, install
 from view import *
 from handlers import *
-from models import *
 
 
 def main():
@@ -12,7 +11,9 @@ def main():
         print(file.read())
     view = View()
     view.print_description()
-    links = ["https://www.indiegogo.com/projects/the-crua-crucoon--2/pies"]
+    view.config()
+    config = Config()
+    links = read_links()
     controller = ControllerOfProcess(links)
     controller.run()
 
@@ -24,6 +25,3 @@ if __name__ == "__main__":
     delta = round(end - start, 1)
     ic(delta)
 
-#   "https://www.indiegogo.com/projects/the-crua-crucoon--2/pies"
-#   "https://www.kickstarter.com/projects/255929858/flying-tent-7-seconds-to-the-stars?ref=discovery_popular&term=tent"
-# /html/body/div/div/div[2]/div[2]/p

@@ -1,4 +1,3 @@
-from models.page_info import PageInfo
 from handlers.config import Config
 from openai import OpenAI
 

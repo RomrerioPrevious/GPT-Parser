@@ -1,14 +1,29 @@
-import time
-
 from rich.console import Console
-from rich.progress import Progress, track
 from rich.layout import Layout
 from rich.panel import Panel
+import json
 
 
 class View:
     def __init__(self):
         self.console = Console()
+
+    def config(self):
+        while True:
+            command = self.console.input("Write [red]command[/]: ")
+            command = command.split()
+            match command[0]:
+                case "start":
+                    break
+                case "edit":
+                    with open("settings.json") as file:
+                        parameters = json.load(file)
+                    if command[1] in parameters.keys():
+                        parameters[command[1]] = command[2]
+                        with open("settings.json", "w") as file:
+                            json.dump(parameters, file)
+                case "back":
+                    raise KeyboardInterrupt()
 
     def print_description(self):
         layout = Layout()

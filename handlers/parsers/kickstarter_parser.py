@@ -2,13 +2,10 @@ import time
 
 from bs4 import BeautifulSoup
 from openai import APIConnectionError
-from selenium.common import NoSuchElementException
-from selenium.webdriver import ActionChains
 from selenium import webdriver
 from selenium.webdriver.common.keys import Keys
 from selenium.webdriver.common.by import By
-
-from handlers import GPT_Analysator
+from handlers.gpt import GPT_Analysator
 from handlers.parsers.parser import Parser
 from models import PageInfo
 from icecream import ic
@@ -17,6 +14,7 @@ from icecream import ic
 class KickstarterParser(Parser):
     def __init__(self, link: str):
         super().__init__(link)
+        ic.disable()
 
     def get_page(self) -> str:
         ic("page is loading")

@@ -1,7 +1,5 @@
 import time
-
 from openai import APIConnectionError
-
 from handlers.gpt import GPT_Analysator
 from bs4 import BeautifulSoup
 from selenium.common import NoSuchElementException
@@ -15,6 +13,7 @@ from icecream import ic
 class IndiegogoParser(Parser):
     def __init__(self, link: str):
         super().__init__(link)
+        ic.disable()
 
     def get_page(self) -> str:
         ic("page is loading")
