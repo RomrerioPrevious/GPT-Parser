@@ -15,6 +15,7 @@ user [techdecker](https://kwork.ru/user/techdecker).
 - [Selenium](https://github.com/SeleniumHQ/selenium)
 - [BeautifulSoup](https://github.com/expobrain/BeautifulSoup)
 - [OpenAI](https://github.com/openai/openai-python)
+- [Openpyxl](https://github.com/shshe/openpyxl)
 - JSON
 
 ## How to install
@@ -25,19 +26,18 @@ Second: install and start poetry.
 
 ```
 pip install poetry
+```
+
+Third: install libraries.
+
+```
 poetry install
-```
-
-Third: turn it on safaridriver.
-
-```
-safaridriver --enable
 ```
 
 ## How to run project
 
 ```
-poetry run main.py
+poetry run python main.py
 ```
 
 ## Questions and clarifications
@@ -51,5 +51,5 @@ What are the launch requirements?
 How to edit parameters?
 
 ```
-edit PATAMETER_NAME DATA
+edit api sk-...
 ```

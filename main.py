@@ -12,7 +12,7 @@ def main():
         print(file.read())
     view = View()
     view.print_description()
-#    view.config()
+    view.config()
     path = dir_path = os.path.dirname(os.path.realpath(__file__))
     config = Config()
     links = read_links()
