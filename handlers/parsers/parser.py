@@ -9,15 +9,7 @@ class Parser:
         self.page: str = ""
         self.driver = webdriver.Chrome(options=self.create_options())
 
-    def create_options(self) -> webdriver.SafariOptions:
-        options = webdriver.SafariOptions()
-        options.page_load_strategy = "none"
-        options.add_argument("headless")
-        options.add_argument(f"user-agent={UserAgent().random}")
-        options.add_argument("--diagnose")
-        return options
-
-    def create_chrome_options(self) -> webdriver.ChromeOptions:
+    def create_options(self) -> webdriver.ChromeOptions:
         options = webdriver.ChromeOptions()
         options.page_load_strategy = "none"
         options.add_experimental_option("detach", True)

@@ -1,7 +1,7 @@
 import time
 
 from bs4 import BeautifulSoup
-from openai import APIConnectionError
+from openai import APIConnectionError, PermissionDeniedError
 from selenium import webdriver
 from selenium.webdriver.common.keys import Keys
 from selenium.webdriver.common.by import By
@@ -50,7 +50,10 @@ class KickstarterParser(Parser):
         page_info = PageInfo()
         page_info.name = self.get_name(soup)
         page_info.link = self.link
-        page_info.link_of_image = soup.find("img", class_="w100p block")["src"]
+        try:
+            page_info.link_of_image = soup.find("img", class_="w100p block")["src"]
+        except BaseException:
+            ...
         page_info.risks = [""]
         page_info.reviews = [""]
         page_info.collecting = 0
@@ -61,7 +64,10 @@ class KickstarterParser(Parser):
         page_info = PageInfo()
         page_info.name = self.get_name(soup)
         page_info.link = self.link
-        page_info.link_of_image = soup.find("img", class_="js-feature-image")["src"]
+        try:
+            page_info.link_of_image = soup.find("img", class_="js-feature-image")["src"]
+        except BaseException:
+            ...
         page_info.risks = [soup.find("div", class_="mb3 mb10-sm mb3 js-risks", id="risks-and-challenges")
                            .find("p", class_="js-risks-text text-preline")]
         page_info.collecting = self.collecting_to_int(soup.find("span", class_="money").text)
@@ -80,8 +86,10 @@ class KickstarterParser(Parser):
             page_info.uniqueness_in_world = responce["uniqueness_in_world"]
             page_info.patent = responce["patent"]
             page_info.can_buy = responce["can_buy"]
-        except APIConnectionError:
-            ...
+        except APIConnectionError as error:
+            ic(error.type)
+        except PermissionDeniedError as error:
+            ic(error.type)
 
     def get_name(self, soup):
         if soup.find("a", class_="hero__link"):

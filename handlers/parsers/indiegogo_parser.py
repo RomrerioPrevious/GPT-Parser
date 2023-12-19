@@ -1,5 +1,5 @@
 import time
-from openai import APIConnectionError
+from openai import APIConnectionError, PermissionDeniedError
 from handlers.gpt import GPT_Analysator
 from bs4 import BeautifulSoup
 from selenium.common import NoSuchElementException
@@ -68,8 +68,10 @@ class IndiegogoParser(Parser):
             page_info.uniqueness_in_world = responce["uniqueness_in_world"]
             page_info.patent = responce["patent"]
             page_info.can_buy = responce["can_buy"]
-        except APIConnectionError:
-            ...
+        except APIConnectionError as error:
+            ic(error.type)
+        except PermissionDeniedError as error:
+            ic(error.type)
 
     def get_reviews(self):
         result = []

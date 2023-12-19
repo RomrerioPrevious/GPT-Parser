@@ -1,5 +1,6 @@
 import time
 from icecream import ic, install
+import os
 from view import *
 from handlers import *
 
@@ -7,14 +8,15 @@ from handlers import *
 def main():
     install()
     ic.configureOutput(prefix="info | ")
-    with open("resources\\assets\\Logo.txt", "r") as file:
+    with open("resources/assets/Logo.txt", "r") as file:
         print(file.read())
     view = View()
     view.print_description()
-    view.config()
+#    view.config()
+    path = dir_path = os.path.dirname(os.path.realpath(__file__))
     config = Config()
     links = read_links()
-    controller = ControllerOfProcess(links)
+    controller = ControllerOfProcess(links, path + "/resources/data/result.xlsx")
     controller.run()
 
 

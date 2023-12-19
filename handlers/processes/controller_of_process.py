@@ -4,8 +4,9 @@ import time
 
 
 class ControllerOfProcess:
-    def __init__(self, links: [str]):
+    def __init__(self, links: [str], path: str = "/resources/data/result.xlsx"):
         self.links = links
+        self.path = path
         self.processes = {
             "prc-1": Process(),
             "prc-2": Process(),
@@ -18,8 +19,9 @@ class ControllerOfProcess:
         }
 
     def run(self):
+        ic("the program has been launched")
         for link in self.links:
-            current_process = Process(target=process_of_parser, args=(link,))
+            current_process = Process(target=process_of_parser, args=(link, self.path))
             while not self.balancing(current_process):
                 time.sleep(0.5)
         for process in self.processes:
