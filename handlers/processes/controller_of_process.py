@@ -20,10 +20,12 @@ class ControllerOfProcess:
 
     def run(self):
         ic("the program has been launched")
-        for link in self.links:
+        for completed_processes, link in enumerate(self.links):
             current_process = Process(target=process_of_parser, args=(link, self.path))
             while not self.balancing(current_process):
                 time.sleep(0.5)
+            if completed_processes % 20 == 0:
+                ic(completed_processes)
         for process in self.processes:
             if not self.processes[process].is_alive():
                 continue

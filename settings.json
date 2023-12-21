@@ -1,4 +1,5 @@
 {
   "api": "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",
-  "site_list_path": "resources/data/projects.docx"
+  "site_list_path": "resources/data/projects.docx",
+  "result_path": "/resources/data/result.xlsx"
 }

@@ -69,7 +69,7 @@ class KickstarterParser(Parser):
         except BaseException:
             ...
         page_info.risks = [soup.find("div", class_="mb3 mb10-sm mb3 js-risks", id="risks-and-challenges")
-                           .find("p", class_="js-risks-text text-preline")]
+                           .find("p", class_="js-risks-text text-preline").text]
         page_info.collecting = self.collecting_to_int(soup.find("span", class_="money").text)
         page_info.reviews = [""]
         self.get_gpt_analysis(page_info)

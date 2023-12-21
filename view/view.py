@@ -31,7 +31,7 @@ class View:
     def print_description(self):
         layout = Layout()
         commands = ["1. start", "2. edit", "3. back"]
-        parameters = ["1. api", "2. site_list_path"]
+        parameters = ["1. api", "2. site_list_path", "3. result_path"]
         height = max(len(commands) + 2, len(parameters) + 2)
         layout.split_row(
             Layout(Panel("\n".join(commands), title="commands", height=height), name="commands"),

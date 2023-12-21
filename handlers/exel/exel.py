@@ -10,7 +10,7 @@ class Exel:
         self.workbook = openpyxl.load_workbook(path)
 
     def add_page(self, info: PageInfo):
-        sheld = self.workbook.create_sheet(info.name)
+        sheld = self.workbook.create_sheet(info.name[0:31])
         self.add_text(sheld)
         self.add_info(sheld, info)
 
@@ -28,7 +28,7 @@ class Exel:
         sheld["F2"] = self.add_has_info(info.uniqueness_technology)
         sheld["G2"] = self.add_has_info(info.uniqueness_in_world)
         sheld["H2"] = self.add_has_info(" ".join(info.reviews))
-        sheld["I2"] = self.add_has_info(info.risks)
+        sheld["I2"] = self.add_has_info(" ".join(info.risks))
         sheld["J2"] = self.add_has_info(info.patent)
         sheld["K2"] = self.add_has_info(info.can_buy)
         sheld["L2"] = self.add_has_info(str(info.collecting))
