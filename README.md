@@ -53,3 +53,8 @@ How to edit parameters?
 ```
 edit api sk-...
 ```
+
+Where the info is saved?
+
+Info was saved in file with an extension ".xlsx". Path of file you can point out in settings. Standard settings "
+/resources/data/result.xlsx". File must be pre-saved for get meta-info.
