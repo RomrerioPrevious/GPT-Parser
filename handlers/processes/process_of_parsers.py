@@ -1,7 +1,6 @@
 from handlers.parsers import IndiegogoParser, KickstarterParser, Parser
-from models import PageInfo
-import os
 from icecream import ic
+from multiprocessing import RLock
 from handlers.exel import Exel
 
 
@@ -18,13 +17,14 @@ class ProcessOfParsers:
         return parsers[site](link)
 
 
-def process_of_parser(link: str, path_of_result: str):
+def process_of_parser(link: str, path_of_result: str, lock: RLock()):
     try:
         parser = ProcessOfParsers.find_class_of_link(link)
         parser.get_page()
         info = parser.parse_page()
-        exel = Exel(path=path_of_result)
-        exel.add_page(info)
-        del exel
+        with lock:
+            exel = Exel(path=path_of_result)
+            exel.add_page(info)
+            del exel
     except BaseException as error:
         ic(error)
