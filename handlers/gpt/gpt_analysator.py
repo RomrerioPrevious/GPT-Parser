@@ -18,13 +18,15 @@ class GPT_Analysator:
         return result
 
     def parse_ask(self, ask: str) -> str:
-        completion = self.openai.chat.completions.create(
-            messages=[
-                {"role": "user", "content": ask}
-            ],
-            model="gpt-4",
+        response = self.openai.chat.completions.create(
+            model="gpt-3.5-turbo",
+            messages=[{"role": "system", "content": ask}],
+            temperature=0.8,
+            max_tokens=64,
+            top_p=1
         )
-        return completion.choices[0].message.content
+        ic(response)
+        return response.choices[0].message.content
 
     def get_asks(self, project) -> {str: str}:
         asks = {"site": f"Project '{project}' have site? If 'yes' which one is it, else say 'no'.",

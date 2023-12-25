@@ -24,9 +24,16 @@ def main():
     controller.run()
 
 
+def test():
+    config = Config()
+    gpt = GPT_Analysator()
+    info = gpt.get_page_info_by_project_name("Beluga tent 6-in-1 from Qaou")
+    ic(info)
+
+
 if __name__ == "__main__":
     start = time.time()
-    main()
+    test()
     end = time.time()
     delta = round(end - start, 1)
     ic(delta)

@@ -23,6 +23,7 @@ def process_of_parser(link: str, path_of_result: str, lock: RLock()):
         parser.get_page()
         info = parser.parse_page()
         with lock:
+            ic(link)
             exel = Exel(path=path_of_result)
             exel.add_page(info)
             del exel

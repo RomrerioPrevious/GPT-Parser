@@ -72,6 +72,8 @@ class IndiegogoParser(Parser):
             ic(error.type)
         except PermissionDeniedError as error:
             ic(error.type)
+        except BaseException as error:
+            ic(error)
 
     def get_reviews(self):
         result = []

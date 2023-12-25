@@ -90,6 +90,8 @@ class KickstarterParser(Parser):
             ic(error.type)
         except PermissionDeniedError as error:
             ic(error.type)
+        except BaseException as error:
+            ic(error)
 
     def get_name(self, soup):
         if soup.find("a", class_="hero__link"):
